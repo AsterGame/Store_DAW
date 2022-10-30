@@ -39,6 +39,69 @@ public class Productos {
 	@ManyToOne
 	@JoinColumn (name="IdCategoria")
 	private Categorias tipoCate;
+
+	
+	//metodos de lectura
+	
+	public int getCodigoP() {
+		return codigoP;
+	}
+
+	public void setCodigoP(int codigoP) {
+		this.codigoP = codigoP;
+	}
+
+	public String getNombreP() {
+		return nombreP;
+	}
+
+	public void setNombreP(String nombreP) {
+		this.nombreP = nombreP;
+	}
+
+	public String getUnidad() {
+		return unidad;
+	}
+
+	public void setUnidad(String unidad) {
+		this.unidad = unidad;
+	}
+
+	public double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+
+	public int getStockProd() {
+		return stockProd;
+	}
+
+	public void setStockProd(int stockProd) {
+		this.stockProd = stockProd;
+	}
+
+	public Proveedores getTipoPro() {
+		return tipoPro;
+	}
+
+	public void setTipoPro(Proveedores tipoPro) {
+		this.tipoPro = tipoPro;
+	}
+
+	public Categorias getTipoCate() {
+		return tipoCate;
+	}
+
+	public void setTipoCate(Categorias tipoCate) {
+		this.tipoCate = tipoCate;
+	}
+	
+	
+	
+	
 	
 	
 }

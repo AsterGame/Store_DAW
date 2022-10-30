@@ -18,7 +18,9 @@ public class ProductoService {
 		return repo.findAll();
 	}
 	
-	public void actualizarP (Productos bean) {
+	public void grabar(Productos bean) {
 		repo.save(bean);
 	}
+	
+	
 }

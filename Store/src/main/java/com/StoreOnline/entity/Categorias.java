@@ -25,4 +25,40 @@ public class Categorias {
 	
 	@OneToMany(mappedBy = "tipoCate")
 	private List<Productos>listaCategorias;
+
+	public int getCodigoCate() {
+		return codigoCate;
+	}
+
+	public void setCodigoCate(int codigoCate) {
+		this.codigoCate = codigoCate;
+	}
+
+	public String getNombreCate() {
+		return nombreCate;
+	}
+
+	public void setNombreCate(String nombreCate) {
+		this.nombreCate = nombreCate;
+	}
+
+	public String getDescripcionCate() {
+		return descripcionCate;
+	}
+
+	public void setDescripcionCate(String descripcionCate) {
+		this.descripcionCate = descripcionCate;
+	}
+
+	public List<Productos> getListaCategorias() {
+		return listaCategorias;
+	}
+
+	public void setListaCategorias(List<Productos> listaCategorias) {
+		this.listaCategorias = listaCategorias;
+	}
+	
+	
+	
+	
 }
