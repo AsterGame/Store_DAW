@@ -1,13 +1,13 @@
-package com.modelo;
+package com.StoreOnline;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringModeloCl2Application {
+public class SpringStoreOnlineApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringModeloCl2Application.class, args);
+		SpringApplication.run(SpringStoreOnlineApplication.class, args);
 	}
 
 }
