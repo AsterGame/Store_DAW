@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+
+<div class="container-fluid"> 
+  <h1>Login</h1>
+   <div class="d-flex justify-content-center">
+    <!--img src="https://image.shutterstock.com/image-illustration/rick-morty-260nw-2062084112.jpg" class="img-thumbnail" alt="..."-->
+   
+
+    <form>
+      <div class="mb-3"> 
+
+      
+      
+        <div class="d-grid gap-2">
+            <button class="btn btn-primary" type="button">Conexión con Gmail
+                <img src="img/gmail.svg" alt="">
+            </button>
+            <button class="btn btn-primary" type="button">Iniciar sesión con Facebook
+                <img src="img/facebook-circle.svg" alt="">
+            </button>
+          
+      </div>
+
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Dirección de correo electrónico">
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
+    </div>
+
+   
+
+    <div class="d-grid gap-2">
+
+    
+    <button type="submit" class="btn btn-custom-color">Iniciar sesión</button>
+
+           <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  ¿No tienes una cuenta? Regístrate
+</button>
+  </div>
+
+  </form>
+
+
+ 
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Regístrate</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="mb-3 form-check">
+          <div class="d-grid gap-2">
+              <button class="btn btn-primary" type="button">Regístrate con Google
+                  <img src="img/gmail.svg" alt="">
+              </button>
+              <button class="btn btn-primary" type="button">Regístrate con Facebook
+                  <img src="img/facebook-circle.svg" alt="">
+              </button>
+
+              <button class="btn btn-primary" type="button">Regístrate con su email
+                
+            </button>
+            </div>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">¿Ya tienes una cuenta? Iniciar sesión</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
