@@ -1,0 +1,13 @@
+package com.modelo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SpringModeloCl2Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringModeloCl2Application.class, args);
+	}
+
+}
