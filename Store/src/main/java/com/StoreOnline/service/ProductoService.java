@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.StoreOnline.dao.ProductosRepository;
-import com.StoreOnline.entity.Productos;
+import com.StoreOnline.entity.Producto;
 
 @Service
 public class ProductoService {
@@ -14,11 +14,11 @@ public class ProductoService {
 	@Autowired
 	private ProductosRepository repo;
 	
-	public List<Productos>lisProductos(){
+	public List<Producto>lisProductos(){
 		return repo.findAll();
 	}
 	
-	public void grabar(Productos bean) {
+	public void grabar(Producto bean) {
 		repo.save(bean);
 	}
 	

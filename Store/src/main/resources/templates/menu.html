@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -68,7 +68,7 @@
 </div>
      
      <div class="row">
-      <div class="col-sm">
+      <div class="col-sm" th:each="row:${super}">
 
      
 
@@ -77,10 +77,10 @@
         <img src="https://e39a9f00db6c5bc097f9-75bc5dce1d64f93372e7c97ed35869cb.ssl.cf1.rackcdn.com/img-390d-ak9-medium.jpg" class="card-img-top" alt="...">
       </a>
         <div class="card-body">
-          <a class="">Agua Mineral Sin Gas 625 Ml</a>
-          <p class="card-text">CIELO - BOTELLA 625 ML</p>
+          <a  class="" th:text="${row.nombreProd}" href=''></a>
+          <p class="card-text" th:text="${row.unidadM}"></p>
           <div> 
-            <span>s/ 1.3</span>
+            <span th:text="${row.precioU}"></span>
         </div>
           <a href="#" class="btn btn-primary">AGREGAR</a>
         
@@ -90,94 +90,8 @@
     
 
     </div>
-  
-    <div class="col-sm">
-      <div class="card" style="width: 18rem;">
-        <a href="">
-        <img src="https://e39a9f00db6c5bc097f9-75bc5dce1d64f93372e7c97ed35869cb.ssl.cf1.rackcdn.com/img-390d-ak9-medium.jpg" class="card-img-top" alt="...">
-      </a>
-        <div class="card-body">
-          <a class="">Agua Mineral Sin Gas 625 Ml</a>
-          <p class="card-text">CIELO - BOTELLA 625 ML</p>
-          <div> 
-            <span>s/ 1.3</span>
-        </div>
-          <a href="#" class="btn btn-primary">AGREGAR</a>
-        
-        </div>
-      </div>
-    </div>
+ 
 
-    <div class="col-sm">
-      <div class="card" style="width: 18rem;">
-        <a href="">
-        <img src="https://e39a9f00db6c5bc097f9-75bc5dce1d64f93372e7c97ed35869cb.ssl.cf1.rackcdn.com/img-390d-ak9-medium.jpg" class="card-img-top" alt="...">
-      </a>
-        <div class="card-body">
-          <a class="">Agua Mineral Sin Gas 625 Ml</a>
-          <p class="card-text">CIELO - BOTELLA 625 ML</p>
-          <div> 
-            <span>s/ 1.3</span>
-        </div>
-          <a href="#" class="btn btn-primary">AGREGAR</a>
-        
-        </div>
-      </div>
-    </div>
-  
-    <div class="col">
-      <div class="card" style="width: 18rem;">
-        <a href="">
-        <img src="https://plazavea.vteximg.com.br/arquivos/ids/3109639-1000-1000/464772.jpg" class="card-img-top" alt="...">
-      </a>
-        <div class="card-body">
-          <a class="">Leche GLORIA LIGHT Lata 400g Paquete 6un</a>
-          <p class="card-text">GLORIA LIGHT - 400g 6un</p>
-          <div> 
-            <span>s/ 1.3</span>
-        </div>
-          <a href="#" class="btn btn-primary">AGREGAR</a>
-        
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="col">
-      <div class="card" style="width: 18rem;">
-        <a href="">
-        <img src="https://plazavea.vteximg.com.br/arquivos/ids/2531224-1000-1000/20182465.jpg" class="card-img-top" alt="...">
-      </a>
-        <div class="card-body">
-          <a class="">Papel Higiénico ELITE Clásico Doble Hoja</a>
-          <p class="card-text">ELITE - Doble Hoja 40un</p>
-          <div> 
-            <span>s/ 1.3</span>
-        </div>
-          <a href="#" class="btn btn-primary">AGREGAR</a>
-        
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="col">
-      <div class="card" style="width: 18rem;">
-        <a href="">
-        <img src="https://e39a9f00db6c5bc097f9-75bc5dce1d64f93372e7c97ed35869cb.ssl.cf1.rackcdn.com/img-390d-ak9-medium.jpg" class="card-img-top" alt="...">
-      </a>
-        <div class="card-body">
-          <a class="">Agua Mineral Sin Gas 625 Ml</a>
-          <p class="card-text">CIELO - BOTELLA 625 ML</p>
-          <div> 
-            <span>s/ 1.3</span>
-        </div>
-          <a href="#" class="btn btn-primary">AGREGAR</a>
-        
-        </div>
-      </div>
-    </div>
-  
 
      </div>
 

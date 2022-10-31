@@ -2,21 +2,29 @@ package com.StoreOnline.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.StoreOnline.entity.Categorias;
-import com.StoreOnline.entity.Productos;
-import com.StoreOnline.entity.Proveedores;
+import com.StoreOnline.entity.Categoria;
+import com.StoreOnline.entity.Producto;
+import com.StoreOnline.entity.Proveedor;
 import com.StoreOnline.service.ProductoService;
 
 @Controller
-@RequestMapping ("/")
+@RequestMapping ("/pro")
 public class ProductosController {
 
 	@Autowired 
 	private ProductoService servicioProuctos;
+	
+	@RequestMapping("/listar")
+	public String lis( Model model ) {
+		model.addAttribute("super",servicioProuctos.lisProductos());
+		return "menu";
+		
+	}
 	
 	@RequestMapping("/grabar")
 	public String grabar (@RequestParam ("codigoP")int cod,@RequestParam ("nombreP")String nombrePro,
@@ -26,7 +34,7 @@ public class ProductosController {
 		try {
 
 			//Productos
-			Productos p= new Productos();
+		/*	Producto p= new Producto();
 			p.setCodigoP(cod);
 			p.setNombreP(nombrePro);
 			p.setUnidad(unidad);
@@ -53,7 +61,7 @@ public class ProductosController {
 			else
 			 redirect.addFlashAttribute("Mensaje","Mendicamento actualizado");	
 			
-			
+			*/
 		}catch(Exception e) {
 			redirect.addFlashAttribute("MENSAJE", "Error al grabar");
 			e.printStackTrace();
@@ -61,5 +69,7 @@ public class ProductosController {
 	
 	return null;
 	}
+	
+	
 	
 }
