@@ -22,7 +22,7 @@ public class ProductosController {
 	@RequestMapping("/listar")
 	public String lis( Model model ) {
 		model.addAttribute("super",servicioProuctos.lisProductos());
-		return "menu";
+		return "index";
 		
 	}
 	
