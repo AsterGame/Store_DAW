@@ -22,5 +22,9 @@ public class ProductoService {
 		repo.save(bean);
 	}
 	
+	public Producto buscarPorID(Integer cod) {
+		return repo.findById(cod).orElse(null);
+	}
+	
 	
 }
