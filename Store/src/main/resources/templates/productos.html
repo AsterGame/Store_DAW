@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Mantenimiento Edificio</title>
+
+ 	<!-- Bootstrap CSS -->
+    <link th:href="@{/resources/css/bootstrap.min.css}" rel="stylesheet">
+	<link th:href="@{/resources/css/dataTables.bootstrap5.min.css}" rel="stylesheet">  
+	<link th:href="@{/resources/datepicker/bootstrap-datepicker.css}" rel="stylesheet">
+	<link th:href="@{/resources/css/bootstrap-icons.css}" rel="stylesheet">
+	
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+	
+	<link rel="stylesheet" th:href="@{/resources/alertifyjs/css/alertify.css}">
+	<link rel="stylesheet" th:href="@{/resources/alertifyjs/css/alertify.min.css}"> 
+	
+	
+	
+	<style>
+		.modal-header{
+		color:#fff;
+		background: #428bca;
+		display: flex;
+  		justify-content: center;  		
+		}
+		.help-block {
+		  		color: red;
+		}
+		.form-group.has-error .form-control-label {
+		  color: red;
+		}
+		.form-group.has-error .form-control {
+		  border: 1px solid red;
+		  box-shadow: 0 0 0 0.2rem rgba(250, 16, 0, 0.18);
+		}
+		.alertify .ajs-dialog {
+		    top: 50%;
+		    transform: translateY(-50%);
+		    margin: auto;
+		}
+		.ajs-header{
+			background-color: #286090 !important;
+			color: white !important;
+			/*text-align: center;*/
+			font-size: 18px;
+			font-weight: bold;
+		}
+		.ajs-ok{
+			color: #fff;
+		    background-color: #007bff;
+		    border-color: #007bff;
+		}
+		.ajs-cancel{
+			color: #fff;
+		    background-color: #dc3545;
+		    border-color: #dc3545;
+		}
+	</style>
+	  
+</head>
+<body>
+	<div class="container">
+		
+		<h3 class="text-center">Listado de Productos</h3>	  
+	  	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalsupervisor">
+	  		Nuevo Producto
+	  	</button>
+	  	
+	  	<!-- Modal PARA REGISTRAR-->
+		<div class="modal fade" id="modalsupervisor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered modal-lg">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="staticBackdropLabel">Productos</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        <form id="formEdificio" action="/productos/grabar" method="post" class="row g-3">
+		         <div class="form-group col-md-6">
+				    <label for="validationCustomUsername" class="form-label fw-bold">Codigo</label>
+				    <div class="input-group has-validation">
+				      <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-file-person"></i></span>
+				      <input type="text" class="form-control" name="codigo_pro" id="idCodigo">
+				    </div>
+				  </div>		  
+				  <div class="form-group col-md-6">
+				    <label for="validationCustomUsername" class="form-label fw-bold">Nombre</label>
+				    <div class="input-group has-validation">
+				      <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-file-person"></i></span>
+				      <input type="text" class="form-control" name="nombre_pro" id="idNombre">
+				    </div>
+				  </div>
+				  <div class="form-group col-md-6">
+				    <label for="validationCustomUsername" class="form-label fw-bold">Proveedor</label>
+				    <div class="input-group has-validation">
+				      <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-prescription2"></i></span>
+				      <select class="form-select form-control" name="tipo_pro" id="idProveedor">
+					  <option value=" ">[Seleccione Proveedor]</option>
+					  <option th:each="row:${prove}"
+					  	th:utext="${row.nombreCia}"
+					  	th:value="${row.idProv}"
+					  />
+					</select>
+				    </div>
+				  </div>
+				  <div class="form-group col-md-6">
+				    <label for="validationCustomUsername" class="form-label fw-bold">Categoria</label>
+				    <div class="input-group has-validation">
+				      <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-prescription2"></i></span>
+				      <select class="form-select form-control" name="tipo_cat" id="idCategoria">
+					  <option value=" ">[Seleccione Categoria]</option>
+					  <option th:each="row:${categ}"
+					  	th:utext="${row.nombreCategoria}"
+					  	th:value="${row.idcate}"
+					  />
+					</select>
+				    </div>
+				  </div>
+				  <div class="form-group col-md-6">
+				    <label for="validationCustomUsername" class="form-label fw-bold">Unidad</label>
+				    <div class="input-group has-validation">
+				      <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-coin"></i></span>
+				      <input type="text" class="form-control" name="unidad" id="idUnidad">
+				    </div>
+				  </div>
+				  <div class="form-group col-md-6">
+				    <label for="validationCustomUsername" class="form-label fw-bold">Precio</label>
+				    <div class="input-group has-validation">
+				      <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-coin"></i></span>
+				      <input type="text" class="form-control" name="precio" id="idPrecio">
+				    </div>
+				  </div>				  
+				  <div class="form-group col-md-6">
+				    <label for="validationCustomUsername" class="form-label fw-bold">Stock</label>
+				    <div class="input-group has-validation">
+				      <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-coin"></i></span>
+				      <input type="text" class="form-control" name="stock_prod" id="idStock">
+				    </div>
+				  </div>
+				  <div class="modal-footer">
+			      	<button type="submit" class="btn btn-primary"><i class="bi bi-save2"></i> Grabar</button>
+			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-circle-fill"></i> Cerrar</button>
+			      </div>
+				</form>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	    <!--fin modal PARA REGISTRAR-->
+
+	    <div class="mt-5">
+	    <table id="tableEdificios" class="table table-striped" style="width:100%">
+        <thead>
+							   <tr>
+					                <th>Código</th>
+					                <th>Nombre</th>
+					                <th>Proveedor</th>
+					                <th>Categoria</th>
+					                <th>Unidad</th>
+					                <th>Precio</th>
+					                 <th>Stock</th>
+					            </tr>
+							  </thead>
+							  <tbody>
+								<tr th:each="row:${super}">
+							      <td th:text="${row.idProducto}"></td>
+							      <td th:text="${row.nombreProd}"></td>
+							      <td th:text="${row.idProveedor.nombreCia}"></td>
+							      <td th:text="${row.idCategoria.nombreCategoria}"></td>
+							       <td th:text="${row.unidadM}"></td>
+							       <td th:text="${row.precioU}"></td>
+							      <td th:text="${row.unidadEx}"></td>
+							      <td>
+							      	<button type="button" class="btn btn-primary btn-editar" data-bs-toggle="modal" data-bs-target="#modalsupervisor">
+									  		Editar Producto
+									</button>
+							      </td>
+							    </tr>  
+							  </tbody>
+    </table>
+	</div>    
+	    
+	  
+	</div>
+	
+	<!-- JS principal -->
+	<script th:src="@{/resources/js/jquery-3.5.1.js}"></script>
+
+	<!-- Option 1: Bootstrap Bundle with Popper -->
+    <script th:src="@{/resources/js/bootstrap.bundle.min.js}"></script>
+
+	<!-- JS para la tabla -->
+	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+	<!--JS para validar  -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.0/js/bootstrapValidator.js"></script>
+	
+	<!--JS para Calendario  -->
+	<script th:src="@{/resources/datepicker/bootstrap-datepicker.js}"></script> 
+	
+	<script	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	
+	<script th:src="@{/resources/alertifyjs/alertify.js}"></script>
+	<script th:src="@{/resources/alertifyjs/alertify.min.js}"></script>
+	
+	
+	<script th:inline="javascript" th:if="${MENSAJE!=null}">
+		let msj;
+		msj=/*[[${MENSAJE}]]*/
+		toastr.success(msj, toastr.options = {
+			"timeOut": "2000",
+			"positionClass " : " toast-top-right ",
+		});
+	</script>
+	
+	
+	<script>
+		$(function() {
+				$('#usr1').datepicker({
+					'format': 'yyyy-mm-dd',
+					'autoclose': true
+				});
+		
+			});
+	</script>
+
+	<script>
+		$(document).ready(function () {
+		    $('#tableEdificios').DataTable();
+		    $('#modalsupervisor')
+	        .on('hidden.bs.modal',function(){
+				$("#formEdificio").bootstrapValidator('resetForm',true);
+				$("#idCodigo").val(0)
+			})
+		    
+		});
+		
+		$(document).on("click",".btn-editar",function(){
+			let cod=$(this).parents("tr").find("td")[0].innerHTML;
+			$.get("buscar?codigo="+cod,function(response){
+				console.log(response);
+				$("#idCodigo").val(response.idProducto);
+				$("#idNombre").val(response.nombreProd);
+				$("#idProveedor").val(response.idProveedor.apellido);
+				$("#idCategoria").val(response.idCategoria.Dni);
+				$("#idUnidad").val(response.unidadM);
+				$("#idPrecio").val(response.precioU);
+				$("#idStock").val(response.unidadEx);
+				
+			})
+			
+			
+		})
+		
+		
+		
+	</script>
+	
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+

@@ -19,7 +19,7 @@ public class Categoria {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_categoria")
-	private Integer idProv;
+	private Integer idcate;
 	@Column(name = "nombre_categoria")
 	private String nombreCategoria;
 	
@@ -31,12 +31,14 @@ public class Categoria {
 		@OneToMany(mappedBy = "idCategoria")
 		private List<Producto> listaCategoria;
 
-		public Integer getIdProv() {
-			return idProv;
+		
+
+		public Integer getIdcate() {
+			return idcate;
 		}
 
-		public void setIdProv(Integer idProv) {
-			this.idProv = idProv;
+		public void setIdcate(Integer idcate) {
+			this.idcate = idcate;
 		}
 
 		public String getNombreCategoria() {
