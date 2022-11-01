@@ -83,7 +83,7 @@ public class ProductosController {
 			p.setUnidadEx(unidaddeExistencia);
 			
 			
-			//Proveedores
+			//Proveedores aa
 			Proveedor pr= new Proveedor();
 			pr.setIdProv(codtipoPro);
 			//Envio de objeto a productos
