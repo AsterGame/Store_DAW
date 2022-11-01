@@ -9,10 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 public class UsuarioController {
 
-	@RequestMapping("/perfil")
-	public String listarMenu( Model model ) {
+	@RequestMapping("/registro")
+	public String registro( Model model ) {
 	
 		return "register";
+		
+	}
+	
+	@RequestMapping("/login")
+	public String login( Model model ) {
+	
+		return "login";
 		
 	}
 	
