@@ -80,7 +80,7 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                     <a th:href="@{/mia/dato?codigo=} + ${row.idProducto}">
+                                     <a th:href="@{/productos/buscarProducto?codigo=} + ${row.idProducto}">
                                     <h5 class="fw-bolder" th:text="${row.nombreProd}"></h5>
                                      </a>
                                      <p th:text="${row.unidadM}"></p>

@@ -13,7 +13,7 @@ var prodId = getParameterByName('codigo');
 console.log(prodId);
 
 function getCharacters(done){
-  const results=fetch("http://localhost:8091/mia/buscar?codigo="+prodId);
+  const results=fetch("http://localhost:8091/productos/buscar?idProducto="+prodId);
   results.then(response=> response.json()).then(data=>{
     done(data)
   });

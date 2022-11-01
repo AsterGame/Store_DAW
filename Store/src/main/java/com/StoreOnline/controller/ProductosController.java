@@ -32,6 +32,21 @@ public class ProductosController {
 	@Autowired
 	private CategoriaService servicioCategorias;
 	
+	@RequestMapping("/listarmenu")
+	public String listarMenu( Model model ) {
+		model.addAttribute("super",servicioProuctos.lisProductos());
+		
+		return "index";
+		
+	}
+	
+	@RequestMapping("/buscarProducto")
+	public String buscarP(@RequestParam("codigo") Integer cod)
+	{
+		return "page";
+	}
+	
+	
 	
 	@RequestMapping("/listar")
 	public String lis( Model model ) {
@@ -49,6 +64,7 @@ public class ProductosController {
 	{
 		return servicioProuctos.buscarPorID(cod);
 	}
+	
 	
 	@RequestMapping("/grabar")
 	public String actualizar (@RequestParam ("codigo_pro")int cod,@RequestParam ("nombre_pro")String nombrePro,
