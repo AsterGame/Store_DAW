@@ -1,8 +1,8 @@
-/**
- * @param String name
+
+ /* @param String name
  * @return String
  */
-function getParameterByName(name) {
+/*function getParameterByName(name) {
 	name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
 	var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
 		results = regex.exec(location.search);
@@ -10,7 +10,7 @@ function getParameterByName(name) {
 }
 
 var prodId = getParameterByName('codigo');
-console.log(prodId);
+console.log(prodId);*/
 
 function getCharacters(done) {
 	const results = fetch("http://localhost:8091/servicio/producto");
@@ -26,9 +26,7 @@ getCharacters(data => {
 
 		if (p.nombreArchivo == null) {
 			p.nombreArchivo = "default.jpg";
-			console.log("prueba");
-
-
+			
 		}
 
 		const article = document.createRange().createContextualFragment(/*html*/`
@@ -42,7 +40,7 @@ getCharacters(data => {
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder"><a href="">${p.nombreProd}</a></h5>
+                                    <h5 class="fw-bolder"><a href="/producto/${p.nombreProd}">${p.nombreProd}</a></h5>
                                     <span class="">${p.unidadM}</span>
                                     <!-- Product reviews-->
                                     <div class="d-flex justify-content-center small text-warning mb-2">
@@ -84,6 +82,19 @@ getCharacters(data => {
 });
 
 
+var productoA=[];
+getCharacters(data=>{
+	productoA=data;
+} );
+ 
+
+/*const buscar=(nombre)=>{
+    for(x of productoA){
+        if(nombre==x.nombreProd){
+            return x;
+        }
+    }
+};*/
 
 
 
