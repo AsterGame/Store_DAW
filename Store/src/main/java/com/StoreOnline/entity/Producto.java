@@ -37,7 +37,30 @@ public class Producto {
 	@Column(name="unidades_existencia")
 	private int unidadEx;
 	
+	//agregando atributos nuevos 2-11-2022(dd-mm-yy)
+    private byte[] foto;
+    
+	@Column(name="nombre_foto")
+	private String nombreArchivo;
 	
+	
+	
+
+	public byte[] getFoto() {
+		return foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
+
+	public String getNombreArchivo() {
+		return nombreArchivo;
+	}
+
+	public void setNombreArchivo(String nombreArchivo) {
+		this.nombreArchivo = nombreArchivo;
+	}
 
 	public Integer getIdProducto() {
 		return idProducto;

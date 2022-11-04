@@ -26,5 +26,8 @@ public class ProductoService {
 		return repo.findById(cod).orElse(null);
 	}
 	
+	public void actualizarIMG(byte[] img,String nomAr,Integer cod) {
+		repo.actualizarFoto(img, nomAr, cod);
+	}
 	
 }
