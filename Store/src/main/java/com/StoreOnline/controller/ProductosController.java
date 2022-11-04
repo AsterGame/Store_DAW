@@ -3,6 +3,7 @@ package com.StoreOnline.controller;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,15 +38,15 @@ public class ProductosController {
 	@Autowired
 	private CategoriaService servicioCategorias;
 	
-	@RequestMapping("/listarmenu")
-	public String listarMenu( Model model ) {
-		model.addAttribute("super",servicioProuctos.lisProductos());
-		
+
+	@RequestMapping("menu")
+	public String menuPrincipal() {
 		return "index";
 		
 	}
 	
-	@RequestMapping("/buscarProducto")
+	
+	@RequestMapping("/")
 	public String buscarP(@RequestParam("codigo") Integer cod)
 	{
 		return "page";
