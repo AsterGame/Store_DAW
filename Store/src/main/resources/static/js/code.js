@@ -1,63 +1,100 @@
-/**
- * @param String name
+
+ /* @param String name
  * @return String
  */
-function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-    results = regex.exec(location.search);
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+/*function getParameterByName(name) {
+	name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+	var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+		results = regex.exec(location.search);
+	return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
 var prodId = getParameterByName('codigo');
-console.log(prodId);
+console.log(prodId);*/
 
-function getCharacters(done){
-  const results=fetch("http://localhost:8091/productos/buscar?idProducto="+prodId);
-  results.then(response=> response.json()).then(data=>{
-    done(data)
-  });
+function getCharacters(done) {
+	const results = fetch("http://localhost:8091/servicio/producto");
+	results.then(response => response.json()).then(data => {
+		done(data)
+	});
 }
 
-getCharacters(data=>{
-  console.log(data.nombreProd
-);
+getCharacters(data => {
+	console.log(data);
 
-const article=document.createRange().createContextualFragment(/*html*/`
-   <div class="container px-4 px-lg-5 my-5">
-                <div class="row gx-4 gx-lg-5 align-items-center">
-                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
-                    <div class="col-md-6">
-                        <div class="small mb-1">SKU: BST-498</div>
-                        <h1 class="display-5 fw-bolder" id="idNom">${data.nombreProd}</h1>
-                        <div class="fs-5 mb-5">
-                            <span class="text-decoration-line-through">s/${data.precioU}</span>
-                            <span>s/${data.precioU}</span>
+	for (p of data) {
+
+		if (p.nombreArchivo == null) {
+			p.nombreArchivo = "default.jpg";
+			
+		}
+
+		const article = document.createRange().createContextualFragment(/*html*/`
+     <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Sale badge-->
+                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                            <!-- Product image-->
+                            <img class="card-img-top" src="/datosIMG/${p.nombreArchivo}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder"><a href="/producto/${p.nombreProd}">${p.nombreProd}</a></h5>
+                                    <span class="">${p.unidadM}</span>
+                                    <!-- Product reviews-->
+                                    <div class="d-flex justify-content-center small text-warning mb-2">
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                    </div>
+                                    <!-- Product price-->
+                                    <span class="text-muted text-decoration-line-through">s/${p.precioU}</span>
+                                    s/${p.precioU} UN
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                            </div>
                         </div>
-                        <p class="lead">${data.unidadM}</p>
-                        <div class="d-flex">
-                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
-                                <i class="bi-cart-fill me-1"></i>
-                                Add to cart
-                            </button>
-                        </div>
+                        
+                        
                     </div>
-                </div>
-            </div>
+                               
 
-    `      
-      
-    );
-    const container=document.querySelector("#rm-card");
-     container.append(article);
-  
-    
+    `
 
-  
-  
+		);
+
+
+
+		const container = document.querySelector("#rm-card");
+		container.append(article);
+
+
+
+	}
+
+
 });
 
+
+var productoA=[];
+getCharacters(data=>{
+	productoA=data;
+} );
+ 
+
+/*const buscar=(nombre)=>{
+    for(x of productoA){
+        if(nombre==x.nombreProd){
+            return x;
+        }
+    }
+};*/
 
 
 

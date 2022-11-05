@@ -3,10 +3,13 @@ package com.StoreOnline.controller;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,19 +40,15 @@ public class ProductosController {
 	@Autowired
 	private CategoriaService servicioCategorias;
 	
-	@RequestMapping("/listarmenu")
-	public String listarMenu( Model model ) {
-		model.addAttribute("super",servicioProuctos.lisProductos());
-		
+
+	@RequestMapping("menu")
+	public String menuPrincipal() {
 		return "index";
 		
 	}
 	
-	@RequestMapping("/buscarProducto")
-	public String buscarP(@RequestParam("codigo") Integer cod)
-	{
-		return "page";
-	}
+	
+	
 	
 	
 	

@@ -450,7 +450,41 @@
 					</div>
 				</div>
 				<!--fin modal PARA REGISTRAR-->
+				
+				<!-- Modal PARA IMG-->
+		<div class="modal fade" id="modalIMG" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered modal-lg">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="staticBackdropLabel">FOTO</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        <form id="formDocente" action="/productos/subir-archivo" enctype="multipart/form-data"  method="post" class="row g-3">
+					 <input type="hidden" class="form-control" name="codigo" id="idCodigoFoto">
+					
+					 <img id="foto-producto">
+					 		  
+				  <div class="form-group col-12">
+				
+				    <label for="validationCustomUsername" class="form-label fw-bold">Archivo</label>
+				    <div class="input-group has-validation">
+				      <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-file-person"></i></span>
+				      <input type="file" class="form-control" name="data">
+				    </div>
+				  </div>
+				  <div class="modal-footer">
+			      	<button type="submit" class="btn btn-primary"><i class="bi bi-save2"></i> Grabar</button>
+			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-circle-fill"></i> Cerrar</button>
+			      </div>
+				</form>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	    <!--fin modal PARA IMG-->
 
+ 
 
 
 
@@ -499,12 +533,14 @@
 											<td th:text="${row.unidadM}"></td>
 											<td th:text="${row.precioU}"></td>
 											<td th:text="${row.unidadEx}"></td>
+											
 											<td>
 												<button type="button" class="btn btn-primary btn-editar"
 													data-bs-toggle="modal" data-bs-target="#modalsupervisor">
 													Editar Producto
 												</button>
 											</td>
+											<td><a th:href="${row.nombreArchivo}"  class="btn btn-primary btn-img" data-bs-toggle="modal" data-bs-target="#modalIMG"><i class="bi bi-pencil"></i></a></td>
 										</tr>
 
 									</tbody>
@@ -583,6 +619,24 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
 		crossorigin="anonymous"></script>
+		
+	<script>
+	$(document).on("click",".btn-img",function(){
+			let cod;
+			cod=$(this).parents("tr").find("td")[0].innerHTML;
+			
+			$("#idCodigoFoto").val(cod);
+		    //recuperar el href del boton seleccionado
+		    let img=$(this).attr("href");
+			if(img!=null){
+		      $("#foto-producto").attr("src",'/datosIMG/'+img);	
+			}
+			else{
+				 $("#foto-producto").attr("src",'/datosIMG/');
+			}
+			
+		})	
+	</script>	
 </body>
 
 </html>
