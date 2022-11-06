@@ -29,5 +29,8 @@ public class ProductoService {
 	public void actualizarIMG(byte[] img,String nomAr,Integer cod) {
 		repo.actualizarFoto(img, nomAr, cod);
 	}
-	
+
+	public void eliminar(Integer cod) {
+		repo.deleteById(cod);
+	}
 }

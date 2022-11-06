@@ -25,7 +25,7 @@ import com.StoreOnline.service.ProductoService;
 import com.StoreOnline.service.ProveedorService;
 
 @Controller
-@RequestMapping ("/productos")
+@RequestMapping ("/tables")
 public class ProductosController {
 
 	//Productos
@@ -113,8 +113,24 @@ public class ProductosController {
 			e.printStackTrace();
 		}
 	
-	return "redirect:/productos/listar";
+	return "redirect:/tables/listar";
 	}
+	
+	@RequestMapping("/eliminar")
+	public String eliminar(@RequestParam("idProducto")int cod, RedirectAttributes redirect) {
+		try {
+			servicioProuctos.eliminar(cod);
+			redirect.addFlashAttribute("Mensaje","Producto eliminado");
+			
+		} catch (Exception e) {
+			redirect.addFlashAttribute("Mensaje","Error al eliminar un producto");
+			e.printStackTrace();
+		}
+		return "redirect:/tables/listar";
+	}
+	
+	
+	
 	
 	@RequestMapping("/subir-archivo")
 	public String subirArchivo(@RequestParam("data") MultipartFile archivo,
@@ -131,7 +147,7 @@ public class ProductosController {
 		
 		servicioProuctos.actualizarIMG(bytes, nomArchivo, cod);
 		redirect.addFlashAttribute("MENSAJE","Foto actualizada");
-		return "redirect:/productos/listar";
+		return "redirect:/tables/listar";
 	}
 	
 	
