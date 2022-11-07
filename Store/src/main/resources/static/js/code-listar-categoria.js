@@ -1,17 +1,3 @@
-
- /* @param String name
- * @return String
- */
-/*function getParameterByName(name) {
-	name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-	var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-		results = regex.exec(location.search);
-	return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
-
-var prodId = getParameterByName('codigo');
-console.log(prodId);*/
-
 function getCharacters(done) {
 	const results = fetch("http://localhost:8091/servicio/producto");
 	results.then(response => response.json()).then(data => {
@@ -19,18 +5,29 @@ function getCharacters(done) {
 	});
 }
 
-getCharacters(data => {
-	console.log(data);
+var productoA=[];
+getCharacters(data=>{
+	productoA=data;
+} );
+ 
 
-	for (p of data) {
 
+ 
+const buscador=()=>{
+	var nombreCategoria=document.getElementById("nom-categoria").textContent;
+	
+    for(p of productoA){
+	
+
+        if(p.idCategoria.nombreCategoria==nombreCategoria){
+	
 		if (p.nombreArchivo == null) {
 			p.nombreArchivo = "default.jpg";
 			
 		}
-
-		const article = document.createRange().createContextualFragment(/*html*/`
-     <div class="col mb-5">
+		
+	    const article=document.createRange().createContextualFragment(`
+	      <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Sale badge-->
                             <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
@@ -63,35 +60,21 @@ getCharacters(data => {
                         
                         
                     </div>
-                               
-
-    `
-
-		);
-
-
-
-		const container = document.querySelector("#rm-card");
+	    
+	    `);
+	     const container = document.querySelector("#rm-categoria");
 		container.append(article);
-
-
-
-	}
-
-
-});
-
-
-
-
-/*const buscar=(nombre)=>{
-    for(x of productoA){
-        if(nombre==x.nombreProd){
-            return x;
+	    
+	    console.log(p);
         }
+        
+        
+        
+        
     }
-};*/
+}
+ 
+setTimeout(buscador,500);
 
-
-
+ 
 
