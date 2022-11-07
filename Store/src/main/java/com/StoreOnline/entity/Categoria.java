@@ -23,7 +23,7 @@ public class Categoria {
 	@Column(name = "nombre_categoria")
 	private String nombreCategoria;
 	
-	@Column(name = "descripcion")
+	@Column(name = "des_categoria")
 	private String descripcion;
 	
 	//producto 

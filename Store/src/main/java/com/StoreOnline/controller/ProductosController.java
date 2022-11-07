@@ -50,9 +50,6 @@ public class ProductosController {
 	
 	
 	
-	
-	
-	
 	@RequestMapping(value="listar")
 	public String lis( Model model ) {
 		model.addAttribute("super",servicioProuctos.lisProductos());

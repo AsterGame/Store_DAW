@@ -40,7 +40,7 @@ getCharacters(data => {
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder"><a href="/producto/${p.nombreProd}">${p.nombreProd}</a></h5>
+                                    <h5 class="fw-bolder"><a href="/servicio/${p.nombreProd}">${p.nombreProd}</a></h5>
                                     <span class="">${p.unidadM}</span>
                                     <!-- Product reviews-->
                                     <div class="d-flex justify-content-center small text-warning mb-2">
@@ -82,12 +82,14 @@ getCharacters(data => {
 });
 
 
-var productoA=[];
+
+
+/*var productoA=[];
 getCharacters(data=>{
 	productoA=data;
 } );
  
-
+*/
 /*const buscar=(nombre)=>{
     for(x of productoA){
         if(nombre==x.nombreProd){
