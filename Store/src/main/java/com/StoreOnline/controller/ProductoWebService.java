@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,9 +30,8 @@ public class ProductoWebService {
 		return servicioProuctos.lisProductos();
 	}
 	
-	@GetMapping("{nombreP}")
-	@ResponseBody
-	public Producto buscarUna(@PathVariable String nombreP) {
+	
+	public Producto buscarUna(String nombreP) {
 	  Producto p=null;
 	 for(Producto x:servicioProuctos.lisProductos()) {
 		 if(x.getNombreProd().equals(nombreP)) {
@@ -41,6 +41,14 @@ public class ProductoWebService {
 	 
 	 return p;
 	}
-
+    
+	@RequestMapping("{nombreP}")
+	public String lis( Model model, @PathVariable String nombreP ) {
+		model.addAttribute("producto",buscarUna(nombreP));
+	
+		
+		return "page";
+		
+	}
 
 }
