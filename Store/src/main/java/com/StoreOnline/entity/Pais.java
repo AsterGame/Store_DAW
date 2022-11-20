@@ -4,8 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -23,6 +22,32 @@ public class Pais {
 	
 	//proveedor
 		@JsonIgnore
-		@OneToMany(mappedBy = "idPais")
+		@OneToMany(mappedBy = "tipo")
 		private List<Proveedor> listaProveedor;
+
+		public String getIdPais() {
+			return idPais;
+		}
+
+		public void setIdPais(String idPais) {
+			this.idPais = idPais;
+		}
+
+		public String getNombrePais() {
+			return nombrePais;
+		}
+
+		public void setNombrePais(String nombrePais) {
+			this.nombrePais = nombrePais;
+		}
+
+		public List<Proveedor> getListaProveedor() {
+			return listaProveedor;
+		}
+
+		public void setListaProveedor(List<Proveedor> listaProveedor) {
+			this.listaProveedor = listaProveedor;
+		}
+
+		
 }

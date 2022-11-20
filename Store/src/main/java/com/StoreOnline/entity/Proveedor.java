@@ -37,7 +37,7 @@ public class Proveedor {
 	
 	@ManyToOne
 	@JoinColumn(name = "id_pais")
-	private Pais idPais;
+	private Pais tipo;
 	
 	@Column(name = "telefono")
 	private String telefono;
@@ -90,12 +90,12 @@ public class Proveedor {
 		this.direccion = direccion;
 	}
 
-	public Pais getIdPais() {
-		return idPais;
+	public Pais getTipo() {
+		return tipo;
 	}
 
-	public void setIdPais(Pais idPais) {
-		this.idPais = idPais;
+	public void setTipo(Pais tipo) {
+		this.tipo = tipo;
 	}
 
 	public String getTelefono() {
@@ -121,6 +121,7 @@ public class Proveedor {
 	public void setListaProducto(List<Producto> listaProducto) {
 		this.listaProducto = listaProducto;
 	}
+
 
 	
 	

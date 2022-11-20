@@ -19,8 +19,11 @@ public class ProveedorService {
 	public Proveedor buscarPorID(Integer cod) {
 		return repo.findById(cod).orElse(null);
 	}
-	public void actualizar(Proveedor bean) {
+	public void grabar(Proveedor bean) {
 		repo.save(bean);
+	}
+	public void eliminar(Integer codpro) {
+		repo.deleteById(codpro);
 	}
 	
 }
