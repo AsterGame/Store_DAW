@@ -26,10 +26,10 @@ public class UsuarioController {
 	@RequestMapping("/login")
 	public String login(){
 		
-		return "inicio";
+		return "login";
 	}
 	
-	@RequestMapping("/intranet")
+	@RequestMapping("/index")
 	public String intranet(Authentication  auth,Model model){
 		//obtener nombre del usuario
 		String vLogin=auth.getName();
