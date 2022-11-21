@@ -28,11 +28,11 @@ public class SecurityConfig {
 		
 		http.csrf(csrf->csrf.disable())
 		.authorizeHttpRequests((auth)->{
-			auth.antMatchers("/index").hasRole("admin");
+			auth.antMatchers("/mantenimiento").hasRole("Administrador");
 			
 			auth.anyRequest().authenticated();})
 		.formLogin(form-> form.loginPage("/login")
-		.permitAll().defaultSuccessUrl("/index"));
+		.permitAll().defaultSuccessUrl("/intranet"));
 		
 		return http.build();
 	}

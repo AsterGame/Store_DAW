@@ -29,7 +29,7 @@ public class UsuarioController {
 		return "login";
 	}
 	
-	@RequestMapping("/index")
+	@RequestMapping("/intranet")
 	public String intranet(Authentication  auth,Model model){
 		//obtener nombre del usuario
 		String vLogin=auth.getName();
@@ -37,6 +37,8 @@ public class UsuarioController {
 		List<Enlace> lista=servicio.enlacesDelUsuario(u.getRol().getCodigo());
 		model.addAttribute("ENLACES",lista);
 		
-		return "tables";
+		return "plantilla/UITemplate";
 	}
+	
+	
 }
