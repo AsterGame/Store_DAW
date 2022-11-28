@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,6 +16,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 	
+	
+	
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -22,22 +25,61 @@ public class SecurityConfig {
 	
 	@Bean
 	public  SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		/*http.authorizeHttpRequests((auth)-> auth.anyRequest().authenticated())
-			.formLogin(form-> form.loginPage("/login")
-			.permitAll().defaultSuccessUrl("/medicamento/lista"));*/
 		
+
 		http.csrf(csrf->csrf.disable())
 		.authorizeHttpRequests((auth)->{
-			auth.antMatchers("/mantenimiento").hasRole("Administrador");
 			
+			auth.antMatchers("/mantenimiento").hasRole("Administrador");			
 			auth.anyRequest().authenticated();})
+		
 		.formLogin(form-> form.loginPage("/login")
 		.permitAll().defaultSuccessUrl("/intranet"));
 		
 		return http.build();
+	/*
+
+		 http
+         .authorizeRequests()
+             .anyRequest().authenticated()
+             .and()
+         .formLogin()
+             .loginPage("/login");
+		*/
+		
 	}
 	
+	/*
 	
+	
+	
+	
+	protected void configure(HttpSecurity http) throws Exception {
+			http.authorizeHttpRequests().antMatchers(
+					"/index**",
+					"/js/**",
+					"/css/**",
+					"/img/**",
+					"/alertifyjs/**",
+					"/resources/**",
+					"/scss/**",
+					"/vendor/**").permitAll()
+			.anyRequest().authenticated()
+			.and()
+			.formLogin()
+			.loginPage("/login")
+			.permitAll()
+			.and()
+			.logout()
+			.invalidateHttpSession(true)
+			.clearAuthentication(true)
+			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+			.logoutSuccessUrl("/login?logout")
+			.permitAll();
+	 }
+	
+	*/
+
 	
 	/*
 	@Bean
