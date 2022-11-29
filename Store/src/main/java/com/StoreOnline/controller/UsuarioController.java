@@ -25,10 +25,8 @@ public class UsuarioController {
 	
 	@RequestMapping("/login")
 	public String login(Model model){
-		
-	
-			model.addAttribute("men","LA SESSION HA SIDO CERRADA");
-			return "sesion";
+		model.addAttribute("men","LA SESSION HA SIDO CERRADA");
+		return "sesion";
 	}
 	
 	@RequestMapping("/intranet")
@@ -48,5 +46,6 @@ public class UsuarioController {
 		model.addAttribute("mens","ERROR AL INGRESAR");
 		return "sesion";
 	}
+	
 	
 }
