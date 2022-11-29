@@ -27,14 +27,24 @@ public class SecurityConfig {
 	public  SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		
 
-		http.csrf(csrf->csrf.disable())
-		.authorizeHttpRequests((auth)->{
-			
-			auth.antMatchers("/mantenimiento").hasRole("Administrador");			
-			auth.anyRequest().authenticated();})
 		
-		.formLogin(form-> form.loginPage("/login")
-		.permitAll().defaultSuccessUrl("/intranet"));
+		http.csrf(csrf -> csrf.disable()).authorizeHttpRequests((auth) -> {
+			//vamos acceder ala ruta medicamento simpre y cuando su rol adm
+			auth.anyRequest().authenticated();})
+		  .formLogin(form -> {
+			try {
+				form.loginPage("/login")
+  //si todo es correcto ingresamos a esta ruta
+				  .permitAll().defaultSuccessUrl("/intranet")
+                  .failureUrl("/loginerrord")
+				 .and()
+				 .logout()
+				     .logoutSuccessUrl("/login");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
 		
 		return http.build();
 	/*

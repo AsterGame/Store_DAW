@@ -24,9 +24,11 @@ public class UsuarioController {
 	private UsuarioService servicio;
 	
 	@RequestMapping("/login")
-	public String login(){
+	public String login(Model model){
 		
-		return "sesion";
+	
+			model.addAttribute("men","LA SESSION HA SIDO CERRADA");
+			return "sesion";
 	}
 	
 	@RequestMapping("/intranet")
@@ -40,5 +42,11 @@ public class UsuarioController {
 		return "plantilla/UITemplate";
 	}
 	
+	@RequestMapping("/loginerrord")
+	public String errorpa(Model model){
+		      
+		model.addAttribute("mens","ERROR AL INGRESAR");
+		return "sesion";
+	}
 	
 }
