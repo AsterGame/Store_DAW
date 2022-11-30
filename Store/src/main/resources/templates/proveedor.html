@@ -88,7 +88,7 @@
 			<div id="content">	
 
 		
-		<h3 class="text-center">MANTENIMIENTO DE PROVEEDORES</h3>	  
+		<h3 class="text-center">Mantenimiento de Proveedores</h3>	  
 	  	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalMedicamento">
 	  		Nuevo Proveedor
 	  	</button>
@@ -308,7 +308,13 @@
 			  });
 		})
 		
-		
+		//para limpiar inpust del modal
+		$('#modalMedicamento').on('show.bs.modal', function (event) {
+			$("#modalMedicamento input").val("");
+			$("#modalMedicamento textarea").val("");
+			$("#modalMedicamento select").val("");
+			$("#modalMedicamento input[type='checkbox']").prop('checked', false).change();
+		});
 		
 		
 	</script>

@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import com.StoreOnline.entity.Pais;
-
+import com.StoreOnline.entity.Proveedor;
 import com.StoreOnline.service.PaisService;
 @Controller
 @RequestMapping ("/pais")

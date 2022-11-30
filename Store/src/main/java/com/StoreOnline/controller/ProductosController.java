@@ -1,14 +1,19 @@
 package com.StoreOnline.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,6 +26,13 @@ import com.StoreOnline.entity.Proveedor;
 import com.StoreOnline.service.CategoriaService;
 import com.StoreOnline.service.ProductoService;
 import com.StoreOnline.service.ProveedorService;
+import com.StoreOnline.utils.Libreria;
+
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+
+
 
 @Controller
 @RequestMapping ("/tables")
@@ -67,7 +79,7 @@ public class ProductosController {
 	
 	
 	@RequestMapping("/grabar")
-	public String actualizar (@RequestParam ("codigo_pro")int cod,@RequestParam ("nombre_pro")String nombrePro,
+	public String actualizar (@RequestParam ("nombre_pro")String nombrePro,
 			@RequestParam ("tipo_pro")int codtipoPro,@RequestParam ("tipo_cat")int tipoCate, @RequestParam ("unidad")String unidad,
 			@RequestParam ("precio")double precio,@RequestParam ("stock_prod")int unidaddeExistencia, RedirectAttributes redirect) 
 	{
@@ -75,7 +87,7 @@ public class ProductosController {
 
 			//Productos
 			Producto p= new Producto();
-			p.setIdProducto(cod);
+			//p.setIdProducto(cod);
 			p.setNombreProd(nombrePro);
 			p.setUnidadM(unidad);
 			p.setPrecioU(precio);
@@ -96,7 +108,7 @@ public class ProductosController {
 			
 			servicioProuctos.grabar(p);
 		
-			if(cod ==0)
+			if(p.getIdProducto() ==0)
 				redirect.addFlashAttribute("MENSAJE","Producto Registrado");
 			
 			else
@@ -143,6 +155,39 @@ public class ProductosController {
 		servicioProuctos.actualizarIMG(bytes, nomArchivo, cod);
 		redirect.addFlashAttribute("MENSAJE","Foto actualizada");
 		return "redirect:/tables/listar";
+	}
+	
+	@RequestMapping("/consulta")
+	@ResponseBody
+	public List<Producto>consulta(@RequestParam("codigo")Integer cod){
+		return servicioProuctos.listarProductosPorCategoria(cod);
+	}
+	
+
+	@RequestMapping(value="consulta_producto")
+	public String lista_Reporte( Model model ) {
+		model.addAttribute("super",servicioProuctos.lisProductos());
+		model.addAttribute("prove",servicioProveedores.lisProveedores());
+		model.addAttribute("categ",servicioCategorias.lisCategorias());
+		
+		return "consulta_producto";
+		
+	}
+	
+	@RequestMapping("/reporte")
+	public void reporte (HttpServletResponse response,@RequestParam("codigo")Integer cod) {
+		try {
+			List<Producto>data= servicioProuctos.listarProductosPorCategoria(cod);
+			File file = ResourceUtils.getFile ("classpath:reporte_producto.jrxml");
+			JRBeanCollectionDataSource info = new JRBeanCollectionDataSource(data);
+			JasperPrint print = Libreria.generarReporte(file, info);
+			response.setContentType("application/pdf");
+			OutputStream salida=response.getOutputStream();
+			JasperExportManager.exportReportToPdfStream(print, salida);
+			
+		}catch (Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	

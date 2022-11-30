@@ -33,4 +33,8 @@ public class ProductoService {
 	public void eliminar(Integer cod) {
 		repo.deleteById(cod);
 	}
+	
+	public List<Producto> listarProductosPorCategoria (int cod){
+		return repo.listAllByProyecto(cod);
+	}
 }
